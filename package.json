@@ -1,0 +1,29 @@
+{
+  "name": "wtfGL",
+  "version": "1.0.0",
+  "description": "A fancy project made by fayzzzm to practice webGL skills.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fayzzzm/wtfGL.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fayzzzm/wtfGL/issues"
+  },
+  "homepage": "https://github.com/fayzzzm/wtfGL#readme",
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "prettier": "^2.2.1"
+  }
+}

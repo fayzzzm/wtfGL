@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>My first three.js app</title>
-		<style>
-			html, body {
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js"></script>
+
+        <title>My first three.js app</title>
+        <style>
+            html,
+            body {
                 height: 100%;
                 margin: 0;
             }
@@ -20,21 +23,12 @@
                 display: grid;
                 position: relative;
             }
-
-            h1 {
-                position: absolute;
-                text-transform: uppercase;
-                color: #fff;
-                font-size: 108px;
-                place-self: center;
-            }
-		</style>
-	</head>
-	<body>
-        <h1>Hello my friend</h1>
+        </style>
+    </head>
+    <body>
         <canvas id="c"></canvas>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.min.js"></script>
-		<script>
+        <script src="./main.js"></script>
+        <!-- <script>
 
             function main() {
                 const canvas = document.querySelector('#c');
@@ -169,6 +163,6 @@
 
             main();
 
-        </script>
-	</body>
-</html> 
+        </script> -->
+    </body>
+</html>
