@@ -14,9 +14,24 @@
                 display: block;
             }
 
+            body {
+                width: 100%;
+                height: 100vh;
+                display: grid;
+                position: relative;
+            }
+
+            h1 {
+                position: absolute;
+                text-transform: uppercase;
+                color: #fff;
+                font-size: 108px;
+                place-self: center;
+            }
 		</style>
 	</head>
 	<body>
+        <h1>Hello my friend</h1>
         <canvas id="c"></canvas>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.min.js"></script>
 		<script>
@@ -30,7 +45,7 @@
                 const near = 0.1;
                 const far = 100;
                 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-                camera.position.z = 5;
+                camera.position.z = 1.3;
 
                 const scene = new THREE.Scene();
 
@@ -85,15 +100,15 @@
                     new THREE.Face3(4, 5, 1),
                 );
 
-                geometry.faces.forEach((face, ndx) => {
+                geometry.faces.forEach((face, index) => {
                     face.vertexColors = [
-                    (new THREE.Color()).setHSL(ndx / 12      , 1, 0.5),
-                    (new THREE.Color()).setHSL(ndx / 12 + 0.1, 1, 0.5),
-                    (new THREE.Color()).setHSL(ndx / 12 + 0.2, 1, 0.5),
+                    (new THREE.Color()).setHSL(index / 10.1, 1, 0.5),
+                    (new THREE.Color()).setHSL(index / 12 + 0.1, 1, 0.5),
+                    (new THREE.Color()).setHSL(index / 12 + 0.2, 1, 0.5),
                     ];
                 });
 
-                geometry.computeFaceNormals();
+                // geometry.computeFaceNormals();
 
                 function makeInstance(geometry, color, x) {
                     const material = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
@@ -107,8 +122,8 @@
 
                 const cubes = [
                     makeInstance(geometry, 0x44FF44,  0),
-                    makeInstance(geometry, 0x4444FF, -4),
-                    makeInstance(geometry, 0xFF4444,  4),
+                    // makeInstance(geometry, 0x4444FF, -4),
+                    // makeInstance(geometry, 0xFF4444,  4),
                 ];
 
                 function resizeRendererToDisplaySize(renderer) {
@@ -132,18 +147,24 @@
                     }
 
                     cubes.forEach((cube, ndx) => {
-                        const speed = 1 + ndx * .1;
+                        const speed = 1 + ndx * .01;
                         const rot = time * speed;
                         cube.rotation.x = rot;
                         cube.rotation.y = rot;
                     });
+                    
+                    // cubes[0].position.x += 0.001;
+                    // cubes[0].position.y += 0.001;
+                    // cubes[0].position.z += 0.001;
 
                     renderer.render(scene, camera);
 
                     requestAnimationFrame(render);
                 }
-
+                                
                 requestAnimationFrame(render);
+
+                console.log(scene);
             }
 
             main();
