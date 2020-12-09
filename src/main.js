@@ -1,11 +1,15 @@
+import * as THREE from './three.js';
+
+import { OrbitControls } from './orbit-controls.js';
+
 function main() {
     const canvas = document.querySelector('#c');
     const renderer = new THREE.WebGLRenderer({ canvas });
 
-    const fov = 75;
-    const aspect = 2; // the canvas default
-    const near = 0.1;
-    const far = 100;
+    const fov = 75,
+        aspect = 2; // the canvas default
+    const near = 0.1,
+        far = 100;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     camera.position.z = 1.3;
 
@@ -19,23 +23,24 @@ function main() {
         scene.add(light);
     }
 
+    const controls = new OrbitControls(camera, renderer.domElement);
     const particleGeom = new THREE.Geometry();
     const particleMaterial = new THREE.PointsMaterial({
         color: new THREE.Color('white'),
         size: 0.01,
     });
 
-    let particleCount = 5800;
-    let particleDistance = 53;
+    const particleCount = 5800;
+    const particleDistance = 53;
     for (var i = 0; i < particleCount; i++) {
-        let posX = (Math.random() - 0.5) * particleDistance;
-        let posY = (Math.random() - 0.5) * particleDistance;
-        let posZ = (Math.random() - 0.5) * particleDistance;
-        let particle = new THREE.Vector3(posX, posY, posZ);
+        const posX = (Math.random() - 0.5) * particleDistance;
+        const posY = (Math.random() - 0.5) * particleDistance;
+        const posZ = (Math.random() - 0.5) * particleDistance;
+        const particle = new THREE.Vector3(posX, posY, posZ);
         particleGeom.vertices.push(particle);
     }
 
-    const particleSys = new THREE.Points(particleGeom, particleMaterial);
+    const particleSys = new THREE.PointCloud(particleGeom, particleMaterial);
     particleSys.name = 'particleSys';
     scene.add(particleSys);
 
@@ -60,6 +65,11 @@ function main() {
         particleSys.geometry.verticesNeedUpdate = true;
         renderer.render(scene, camera);
     };
+
+    setTimeout(() => {
+        console.log('Hello world');
+        particleSys.boundingSphere = 50;
+    }, 1000);
 
     animate();
     console.log(scene);
